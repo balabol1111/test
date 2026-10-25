@@ -1,0 +1,102 @@
+/* ===== Цвета и шрифты: меняйте здесь ===== */
+:root {
+  --bg: #f5f7f9;
+  --surface: #ffffff;
+  --ink: #15202b;
+  --muted: #55636f;
+  --line: #dbe2e8;
+  --accent: #0b7a86;
+  --accent-ink: #ffffff;
+  --font: "Onest", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --radius: 10px;
+  --max: 1040px;
+
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e151b; --surface: #16202a; --ink: #e8eef3; --muted: #9aa9b5;
+    --line: #26333f; --accent: #3cc3d1; --accent-ink: #062327;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e151b; --surface: #16202a; --ink: #e8eef3; --muted: #9aa9b5;
+  --line: #26333f; --accent: #3cc3d1; --accent-ink: #062327;
+  color-scheme: dark;
+}
+
+html { scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 64px); scroll-behavior: smooth; }
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 400 1rem/1.65 var(--font);
+}
+body::before {
+  content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
+  background: var(--surface); z-index: 10;
+}
+img { max-width: 100%; height: auto; }
+a { color: var(--accent); }
+.wrap { width: min(100% - 2rem, var(--max)); margin-inline: auto; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+/* ===== Шапка ===== */
+.header {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 11;
+  background: var(--surface); border-bottom: 1px solid var(--line);
+}
+.header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 60px; flex-wrap: wrap; }
+.logo { font-weight: 700; font-size: 1.15rem; color: var(--ink); text-decoration: none; }
+.nav { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
+.nav a { color: var(--muted); text-decoration: none; font-weight: 500; }
+.nav a:hover { color: var(--ink); }
+.theme-btn {
+  background: none; border: 1px solid var(--line); color: var(--ink);
+  border-radius: var(--radius); padding: .35rem .7rem; font: inherit; cursor: pointer;
+}
+
+/* ===== Главный блок ===== */
+.hero { padding: clamp(3rem, 9vw, 6.5rem) 0; }
+.hero h1 { font-size: clamp(2.1rem, 6vw, 3.8rem); line-height: 1.1; margin: 0 0 1rem; max-width: 18ch; letter-spacing: -.02em; }
+.hero p { font-size: 1.15rem; color: var(--muted); max-width: 52ch; margin: 0 0 1.75rem; }
+.btn {
+  display: inline-block; background: var(--accent); color: var(--accent-ink);
+  padding: .8rem 1.4rem; border-radius: var(--radius); font-weight: 700;
+  text-decoration: none; border: 0; font-family: inherit; font-size: 1rem; cursor: pointer;
+}
+.btn:hover { filter: brightness(1.1); }
+.btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); margin-left: .5rem; }
+
+/* ===== Секции ===== */
+section { padding: clamp(2.5rem, 6vw, 4.5rem) 0; }
+section + section { border-top: 1px solid var(--line); }
+h2 { font-size: clamp(1.5rem, 3.5vw, 2.1rem); margin: 0 0 1.5rem; letter-spacing: -.01em; }
+.grid { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.4rem; }
+.card h3 { margin: 0 0 .5rem; font-size: 1.1rem; }
+.card p { margin: 0; color: var(--muted); }
+.about { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); align-items: center; }
+.about p { color: var(--muted); max-width: 60ch; }
+.pic {
+  aspect-ratio: 4 / 3; border-radius: var(--radius); border: 1px dashed var(--line);
+  display: grid; place-items: center; color: var(--muted); background: var(--surface);
+}
+
+/* ===== Контакты ===== */
+.contact-box { display: grid; gap: .9rem; max-width: 520px; }
+label { display: grid; gap: .3rem; font-weight: 500; }
+input, textarea {
+  font: inherit; color: var(--ink); background: var(--surface);
+  border: 1px solid var(--line); border-radius: var(--radius); padding: .7rem .8rem; width: 100%;
+}
+textarea { min-height: 120px; resize: vertical; }
+
+/* ===== Подвал ===== */
+.footer { border-top: 1px solid var(--line); padding: 1.75rem 0; color: var(--muted); font-size: .95rem; }
+.footer .wrap { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
